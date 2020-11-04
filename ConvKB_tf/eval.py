@@ -199,8 +199,8 @@ else:
                         return scores
 
                     def test_prediction(x_batch, y_batch, head_or_tail='head'):
-                        print("len x_batch and y_batch: ",
-                              len(x_batch), len(y_batch))
+                        # print("len x_batch and y_batch: ",
+                        #       len(x_batch), len(y_batch))
                         hits10 = 0.0
                         mrr = 0.0
                         mr = 0.0
