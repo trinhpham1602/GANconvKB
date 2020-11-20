@@ -100,12 +100,13 @@ print("Loading data... finished!")
 x_valid = np.array(list(valid.keys())).astype(np.int32)
 y_valid = np.array(list(valid.values())).astype(np.float32)
 len_valid = len(x_valid)
-batch_valid = int(len_valid / (args.num_splits - 1))
+batch_valid = int(len_valid / (args.num_splits))
 
 x_test = np.array(list(test.keys())).astype(np.int32)
 y_test = np.array(list(test.values())).astype(np.float32)
 len_test = len(x_test)
-batch_test = int(len_test / (args.num_splits - 1))
+print('aloooooooooooo, length of test set must be equal to the len of the orginal test set', len_test)
+batch_test = int(len_test / (args.num_splits))
 
 # uncomment when tuning hyper-parameters on the validation set
 # x_test = x_valid
@@ -147,6 +148,8 @@ else:
                                       log_device_placement=args.log_device_placement)
         session_conf.gpu_options.allow_growth = True
         sess = tf.Session(config=session_conf)
+
+        print('sess is: ', sess)
         with sess.as_default():
             global_step = tf.Variable(0, name="global_step", trainable=False)
 
@@ -182,7 +185,7 @@ else:
                 for _model_index in lstModelIndexes:
 
                     _file = checkpoint_prefix + "-" + _model_index
-
+                    print('what is the _file: ', _file)
                     cnn.saver.restore(sess, _file)
 
                     print("Loaded model", _file)
