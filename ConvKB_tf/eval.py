@@ -202,8 +202,8 @@ else:
                         return scores
 
                     def test_prediction(x_batch, y_batch, head_or_tail='head'):
-                        # print("len x_batch and y_batch: ",
-                        #       len(x_batch), len(y_batch))
+                        print("len x_batch and y_batch: ",
+                              len(x_batch), len(y_batch))
                         hits10 = 0.0
                         mrr = 0.0
                         mr = 0.0
@@ -246,7 +246,8 @@ else:
                                 args.neg_ratio) + 1) * args.batch_size)
                             for tmpIndex in range(len(listIndexes) - 1):
                                 results = np.append(results, predict(
-                                    new_x_batch[listIndexes[tmpIndex]:listIndexes[tmpIndex + 1]],
+                                    new_x_batch[listIndexes[tmpIndex]
+                                        :listIndexes[tmpIndex + 1]],
                                     new_y_batch[listIndexes[tmpIndex]:listIndexes[tmpIndex + 1]]))
                             results = np.append(results,
                                                 predict(new_x_batch[listIndexes[-1]:], new_y_batch[listIndexes[-1]:]))
